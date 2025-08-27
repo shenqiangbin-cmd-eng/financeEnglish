@@ -7,7 +7,6 @@ import {
   VocabularyFilter,
   PaginationParams,
   PaginatedResponse,
-  ApiResponse,
   LearningResult
 } from './index';
 

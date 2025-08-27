@@ -1,4 +1,4 @@
-import { Vocabulary, VocabularyLevel } from '../types';
+import { Vocabulary } from '../types';
 import extendedVocabulary from './vocabulary_extended';
 import extendedVocabulary2 from './vocabulary_extended2';
 import extendedVocabulary3 from './vocabulary_extended3';

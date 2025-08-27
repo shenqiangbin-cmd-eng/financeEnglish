@@ -78,14 +78,14 @@ export class IndexedDBServiceImpl implements IndexedDBService {
     }
 
     // 学习统计表
-    if (!db.objectStoreNames.contains(STORES.LEARNING_STATS)) {
-      const statsStore = db.createObjectStore(STORES.LEARNING_STATS, { keyPath: 'userId' });
-    }
+      if (!db.objectStoreNames.contains(STORES.LEARNING_STATS)) {
+        db.createObjectStore(STORES.LEARNING_STATS, { keyPath: 'userId' });
+      }
 
     // 用户设置表
-    if (!db.objectStoreNames.contains(STORES.USER_SETTINGS)) {
-      const settingsStore = db.createObjectStore(STORES.USER_SETTINGS, { keyPath: 'userId' });
-    }
+      if (!db.objectStoreNames.contains(STORES.USER_SETTINGS)) {
+        db.createObjectStore(STORES.USER_SETTINGS, { keyPath: 'userId' });
+      }
   }
 
   private async ensureInitialized(): Promise<void> {

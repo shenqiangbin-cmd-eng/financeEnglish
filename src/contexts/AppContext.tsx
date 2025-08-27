@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useReducer, useEffect, ReactNode } from 'react';
-import { AppState, AppAction, Vocabulary, UserProgress, UserSettings, LearningStats } from '../types';
+import { AppState, AppAction } from '../types';
 import { storageService } from '../services';
-import { VocabularyLevel, LearningStatus } from '../types';
+import { VocabularyLevel } from '../types';
 
 // 初始状态
 const initialState: AppState = {

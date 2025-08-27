@@ -2,7 +2,6 @@ import { AudioService, AudioPlayer, SpeechSynthesizer } from '../types/audio';
 import { AudioPlayerImpl } from './audioPlayer';
 import { SpeechSynthesizerImpl } from './speechSynthesizer';
 import { indexedDBService } from './indexedDB';
-import { Vocabulary } from '../types';
 
 /**
  * 音频服务实现

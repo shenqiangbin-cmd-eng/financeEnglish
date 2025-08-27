@@ -1,4 +1,4 @@
-import { AudioPlayer, AudioPlayerState, AudioPlayerConfig, AudioPlayState } from '../types/audio';
+import { AudioPlayer, AudioPlayerState, AudioPlayerConfig } from '../types/audio';
 
 /**
  * 音频播放器实现
@@ -187,7 +187,7 @@ export class AudioPlayerImpl implements AudioPlayer {
       });
     });
 
-    this.audio.addEventListener('error', (event) => {
+    this.audio.addEventListener('error', (_event) => {
       const error = this.audio?.error;
       let errorMessage = '播放出错';
       
@@ -216,7 +216,7 @@ export class AudioPlayerImpl implements AudioPlayer {
 
     this.audio.addEventListener('canplaythrough', () => {
       if (this.state.config.autoplay && this.state.state === 'loading') {
-        this.audio?.play().catch(error => {
+        this.audio?.play().catch(_error => {
           this.updateState({ 
             state: 'error', 
             error: '自动播放失败' 

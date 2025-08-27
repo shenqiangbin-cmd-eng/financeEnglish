@@ -29,6 +29,9 @@ export interface Vocabulary {
   audioUrl?: string;
   createdAt: Date;
   updatedAt: Date;
+  // 向后兼容字段
+  translation?: string;
+  level?: VocabularyLevel;
 }
 
 // 用户学习进度

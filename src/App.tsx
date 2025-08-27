@@ -1,4 +1,3 @@
-import React from 'react';
 import { AppProvider } from './contexts/AppContext';
 import { AppRouter } from './router';
 import { DataInitializer } from './components/DataInitializer';

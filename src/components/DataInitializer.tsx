@@ -1,7 +1,6 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { dataImportService } from '../services/dataImport';
 import './DataInitializer.css';
-import { useAppContext } from '../contexts/AppContext';
 
 interface DataInitializerProps {
   children: React.ReactNode;
@@ -19,7 +18,6 @@ interface InitState {
  * 在应用启动时检查并导入初始词汇数据
  */
 export const DataInitializer: React.FC<DataInitializerProps> = ({ children }) => {
-  const { dispatch } = useAppContext();
   const [state, setState] = useState<InitState>({
     isInitializing: true,
     isComplete: false,

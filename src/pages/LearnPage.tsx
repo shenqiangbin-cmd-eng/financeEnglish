@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useVocabularies, useAppContext } from '../contexts/AppContext';
+
 import { Card, Button } from '../components/UI';
 import { VocabularyAudio } from '../components/UI';
-import { financialVocabulary, getVocabularyByDifficulty, getVocabularyByCategory } from '../data/vocabulary';
+import { financialVocabulary, getVocabularyByDifficulty } from '../data/vocabulary';
 import { Vocabulary } from '../types';
 
 const LearnPage: React.FC = () => {
-  const vocabularies = useVocabularies();
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>('all');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [filteredVocabularies, setFilteredVocabularies] = useState<Vocabulary[]>(financialVocabulary);

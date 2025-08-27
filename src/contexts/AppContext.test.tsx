@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, act } from '@testing-library/react';
-import React from 'react';
+
 import { AppProvider, useAppContext, useVocabularies, useUserSettings } from './AppContext';
-import { VocabularyLevel } from '../types';
+
 
 // Mock storage service
 vi.mock('../services', () => ({
@@ -31,8 +31,8 @@ function TestComponent() {
         pronunciation: '/test/',
         definition: 'A test word',
         example: 'This is a test.',
-        translation: '测试',
-        level: VocabularyLevel.BEGINNER,
+        exampleTranslation: '这是一个测试。',
+        difficulty: 'beginner',
         category: 'test',
         tags: ['test'],
         createdAt: new Date(),

@@ -1,11 +1,10 @@
 import React from 'react';
-import { useLearningStats, useVocabularies } from '../contexts/AppContext';
+import { useLearningStats } from '../contexts/AppContext';
 import { Card } from '../components/UI';
 import { financialVocabulary } from '../data/vocabulary';
 
 const ProgressPage: React.FC = () => {
   const stats = useLearningStats();
-  const vocabularies = useVocabularies();
   
   const totalVocabularies = financialVocabulary.length;
   const learnedPercentage = totalVocabularies > 0 ? (stats.overall.totalWordsLearned / totalVocabularies) * 100 : 0;
@@ -140,7 +139,7 @@ const ProgressPage: React.FC = () => {
         <h2 style={{ fontSize: '1.5rem', marginBottom: '20px', color: '#333' }}>最近学习记录</h2>
         {stats.daily.length > 0 ? (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '15px' }}>
-            {stats.daily.slice(-7).reverse().map((day, index) => (
+            {stats.daily.slice(-7).reverse().map((day, _index) => (
               <Card key={day.date} variant="default" padding="medium">
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
                   <h4 style={{ color: '#1976d2', margin: 0 }}>{day.date}</h4>

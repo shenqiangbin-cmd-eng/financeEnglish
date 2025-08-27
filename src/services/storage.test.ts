@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { Vocabulary, VocabularyLevel, UserProgress, LearningStatus } from '../types';
+import { Vocabulary, UserProgress, LearningStatus } from '../types';
 
 // Mock the services
 vi.mock('./indexedDB', () => ({
@@ -123,8 +123,8 @@ describe('StorageService', () => {
       pronunciation: '/ɪnˈvestmənt/',
       definition: '投资',
       example: 'Long-term investment is important.',
-      translation: '投资',
-      level: VocabularyLevel.INTERMEDIATE,
+      exampleTranslation: '长期投资很重要。',
+      difficulty: 'intermediate',
       category: 'finance',
       tags: ['finance', 'business'],
       audioUrl: 'https://example.com/audio/investment.mp3',

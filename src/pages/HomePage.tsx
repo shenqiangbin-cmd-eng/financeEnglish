@@ -86,7 +86,7 @@ const HomePage: React.FC = () => {
         <h2>最近学习</h2>
         {stats.daily.length > 0 ? (
           <div className="activity-list">
-            {stats.daily.slice(-5).map((day, index) => (
+            {stats.daily.slice(-5).map((day, _index) => (
               <Card key={day.date} variant="default" padding="medium" className="activity-item">
                 <div className="activity-date">{day.date}</div>
                 <div className="activity-stats">

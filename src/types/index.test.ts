@@ -9,7 +9,6 @@ import {
   DailyStats,
   OverallStats,
   LevelProgress,
-  LearningStats,
   UserSettings,
   AppState,
   AppAction
@@ -42,8 +41,8 @@ describe('Core Types', () => {
       pronunciation: '/pɔːrtˈfoʊlioʊ/',
       definition: 'A collection of investments',
       example: 'My investment portfolio includes stocks and bonds.',
-      translation: '投资组合',
-      level: VocabularyLevel.INTERMEDIATE,
+      exampleTranslation: '我的投资组合包括股票和债券。',
+      difficulty: 'intermediate',
       category: 'investment',
       tags: ['finance', 'investment'],
       audioUrl: 'https://example.com/audio.mp3',
@@ -52,7 +51,7 @@ describe('Core Types', () => {
     };
 
     expect(vocabulary.word).toBe('portfolio');
-    expect(vocabulary.level).toBe(VocabularyLevel.INTERMEDIATE);
+    expect(vocabulary.difficulty).toBe('intermediate');
     expect(vocabulary.tags).toContain('finance');
   });
 

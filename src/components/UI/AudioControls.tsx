@@ -20,7 +20,7 @@ const AudioControls: React.FC<AudioControlsProps> = ({
   const [speed, setSpeed] = useState(1);
   const [voices, setVoices] = useState<SpeechSynthesisVoice[]>([]);
   const [selectedVoice, setSelectedVoice] = useState<string>('');
-  const [isPlaying, setIsPlaying] = useState(false);
+
 
   useEffect(() => {
     // 初始化音量和速度
@@ -102,7 +102,6 @@ const AudioControls: React.FC<AudioControlsProps> = ({
   const handleStopAll = async () => {
     try {
       audioService.stopAll();
-      setIsPlaying(false);
     } catch (error) {
       console.error('Failed to stop all audio:', error);
     }
@@ -111,7 +110,6 @@ const AudioControls: React.FC<AudioControlsProps> = ({
   const handlePauseAll = async () => {
     try {
       audioService.pauseAll();
-      setIsPlaying(false);
     } catch (error) {
       console.error('Failed to pause all audio:', error);
     }
@@ -120,7 +118,6 @@ const AudioControls: React.FC<AudioControlsProps> = ({
   const handleResumeAll = async () => {
     try {
       audioService.resumeAll();
-      setIsPlaying(true);
     } catch (error) {
       console.error('Failed to resume all audio:', error);
     }
