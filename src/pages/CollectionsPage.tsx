@@ -4,6 +4,7 @@ import { Card, Button } from '../components/UI';
 import { financialVocabulary } from '../data/vocabulary';
 import { Collection, CollectionType, Vocabulary } from '../types';
 import { audioService } from '../services/audioService';
+import { storageService } from '../services';
 
 const CollectionsPage: React.FC = () => {
   const collections = useCollections();
@@ -20,44 +21,61 @@ const CollectionsPage: React.FC = () => {
   };
 
   // 创建新收藏夹
-  const handleCreateCollection = () => {
+  const handleCreateCollection = async () => {
     if (!newCollectionName.trim()) return;
     
-    const newCollection: Collection = {
-      id: Date.now().toString(),
-      name: newCollectionName,
-      type: CollectionType.CUSTOM,
-      description: newCollectionDescription,
-      vocabularyIds: [],
-      userId: 'default',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    };
-    
-    dispatch({ type: 'ADD_COLLECTION', payload: newCollection });
-    setNewCollectionName('');
-    setNewCollectionDescription('');
-    setShowCreateForm(false);
+    try {
+      const newCollection: Collection = {
+        id: Date.now().toString(),
+        name: newCollectionName,
+        type: CollectionType.CUSTOM,
+        description: newCollectionDescription,
+        vocabularyIds: [],
+        userId: 'default',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      };
+      
+      await storageService.addCollection(newCollection);
+      dispatch({ type: 'ADD_COLLECTION', payload: newCollection });
+      setNewCollectionName('');
+      setNewCollectionDescription('');
+      setShowCreateForm(false);
+    } catch (error) {
+      console.error('创建收藏夹失败:', error);
+      alert('创建收藏夹失败，请重试');
+    }
   };
 
   // 从收藏夹移除词汇
-  const handleRemoveFromCollection = (collectionId: string, vocabularyId: string) => {
+  const handleRemoveFromCollection = async (collectionId: string, vocabularyId: string) => {
     const updatedCollection = collections.find(c => c.id === collectionId);
     if (updatedCollection) {
-      const newVocabularyIds = updatedCollection.vocabularyIds.filter(id => id !== vocabularyId);
-      dispatch({ 
-        type: 'UPDATE_COLLECTION', 
-        payload: { ...updatedCollection, vocabularyIds: newVocabularyIds, updatedAt: new Date() } 
-      });
+      try {
+        const newVocabularyIds = updatedCollection.vocabularyIds.filter(id => id !== vocabularyId);
+        const updated = { ...updatedCollection, vocabularyIds: newVocabularyIds, updatedAt: new Date() };
+        
+        await storageService.updateCollection(updated);
+        dispatch({ type: 'UPDATE_COLLECTION', payload: updated });
+      } catch (error) {
+        console.error('移除词汇失败:', error);
+        alert('移除词汇失败，请重试');
+      }
     }
   };
 
   // 删除收藏夹
-  const handleDeleteCollection = (collectionId: string) => {
+  const handleDeleteCollection = async (collectionId: string) => {
     if (window.confirm('确定要删除这个收藏夹吗？')) {
-      dispatch({ type: 'DELETE_COLLECTION', payload: collectionId });
-      if (selectedCollection?.id === collectionId) {
-        setSelectedCollection(null);
+      try {
+        await storageService.deleteCollection(collectionId);
+        dispatch({ type: 'DELETE_COLLECTION', payload: collectionId });
+        if (selectedCollection?.id === collectionId) {
+          setSelectedCollection(null);
+        }
+      } catch (error) {
+        console.error('删除收藏夹失败:', error);
+        alert('删除收藏夹失败，请重试');
       }
     }
   };

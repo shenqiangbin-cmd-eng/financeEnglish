@@ -4,9 +4,13 @@ import { Link } from 'react-router-dom';
 import { Card, Button } from '../components/UI';
 import { VocabularyAudio } from '../components/UI';
 import { financialVocabulary, getVocabularyByDifficulty } from '../data/vocabulary';
-import { Vocabulary } from '../types';
+import { Vocabulary, Collection, CollectionType } from '../types';
+import { useAppContext, useCollections } from '../contexts/AppContext';
+import { storageService } from '../services';
 
 const LearnPage: React.FC = () => {
+  const { dispatch } = useAppContext();
+  const collections = useCollections();
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>('all');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [filteredVocabularies, setFilteredVocabularies] = useState<Vocabulary[]>(financialVocabulary);
@@ -33,9 +37,50 @@ const LearnPage: React.FC = () => {
   const startIndex = (currentPage - 1) * itemsPerPage;
   const currentVocabularies = filteredVocabularies.slice(startIndex, startIndex + itemsPerPage);
 
-  const handleAddToFavorites = (vocabulary: Vocabulary) => {
-    // 添加到收藏的逻辑
-    console.log('Added to favorites:', vocabulary.word);
+  const handleAddToFavorites = async (vocabulary: Vocabulary) => {
+    try {
+      // 查找或创建默认收藏夹
+      let favoritesCollection = collections.find(c => c.type === CollectionType.FAVORITES);
+      
+      if (!favoritesCollection) {
+        // 创建默认收藏夹
+        favoritesCollection = {
+          id: 'favorites-' + Date.now(),
+          name: '我的收藏',
+          type: CollectionType.FAVORITES,
+          description: '收藏的词汇',
+          vocabularyIds: [],
+          userId: 'default',
+          createdAt: new Date(),
+          updatedAt: new Date()
+        };
+        
+        // 保存到存储并更新状态
+        await storageService.addCollection(favoritesCollection);
+        dispatch({ type: 'ADD_COLLECTION', payload: favoritesCollection });
+      }
+      
+      // 检查词汇是否已经在收藏夹中
+      if (favoritesCollection.vocabularyIds.includes(vocabulary.id)) {
+        alert('该词汇已在收藏夹中');
+        return;
+      }
+      
+      // 添加词汇到收藏夹
+      const updatedCollection = {
+        ...favoritesCollection,
+        vocabularyIds: [...favoritesCollection.vocabularyIds, vocabulary.id],
+        updatedAt: new Date()
+      };
+      
+      // 保存到存储并更新状态
+      await storageService.updateCollection(updatedCollection);
+      dispatch({ type: 'UPDATE_COLLECTION', payload: updatedCollection });
+      alert(`已将"${vocabulary.word}"添加到收藏夹`);
+    } catch (error) {
+      console.error('添加收藏失败:', error);
+      alert('添加收藏失败，请重试');
+    }
   };
 
   const handleJumpToPage = () => {

@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useCurrentUser, useAppLoading } from '../../contexts/AppContext';
+import { useAppLoading } from '../../contexts/AppContext';
 
 const Header: React.FC = () => {
-  const user = useCurrentUser();
   const loading = useAppLoading();
 
   return (
@@ -25,13 +24,6 @@ const Header: React.FC = () => {
         
         <div className="header-right">
           {loading && <div className="loading-indicator">加载中...</div>}
-          <div className="user-info">
-            {user ? (
-              <span>欢迎, 用户{user.id}</span>
-            ) : (
-              <span>未登录</span>
-            )}
-          </div>
         </div>
       </div>
     </header>
