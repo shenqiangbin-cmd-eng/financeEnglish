@@ -1,0 +1,408 @@
+/* VocabularyLearning 页面样式 */
+
+.vocabulary-learning-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+/* 加载状态 */
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  gap: 16px;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e0e0e0;
+  border-top: 4px solid #1976d2;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 错误和完成状态卡片 */
+.error-card,
+.completion-card {
+  text-align: center;
+  padding: 40px;
+  margin: 40px auto;
+  max-width: 500px;
+}
+
+.completion-stats {
+  margin: 20px 0;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+}
+
+.completion-stats p {
+  margin: 8px 0;
+  font-size: 16px;
+}
+
+.completion-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* 学习头部 */
+.learning-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 16px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.progress-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #4caf50;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+}
+
+.stats-section {
+  display: flex;
+  gap: 16px;
+}
+
+.stat-item {
+  font-size: 14px;
+  color: #666;
+  white-space: nowrap;
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* 音频控制面板 */
+.audio-controls-panel {
+  margin-bottom: 20px;
+}
+
+/* 学习内容区域 */
+.learning-content {
+  display: flex;
+  justify-content: center;
+}
+
+.vocabulary-card {
+  width: 100%;
+  max-width: 800px;
+  padding: 32px;
+}
+
+.vocabulary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.vocabulary-category {
+  margin: 0;
+  color: #1976d2;
+  font-size: 18px;
+}
+
+/* 问题模式 */
+.question-mode {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.question-section h3 {
+  margin: 0 0 16px 0;
+  color: #333;
+  font-size: 20px;
+}
+
+.definition-display {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #1976d2;
+}
+
+.definition-text {
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 0 0 12px 0;
+  color: #333;
+}
+
+.example-section {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.example-label {
+  font-weight: 600;
+  color: #666;
+  margin: 0 0 8px 0;
+  font-size: 14px;
+}
+
+.example-text {
+  font-style: italic;
+  color: #555;
+  margin: 0;
+  font-size: 16px;
+}
+
+.answer-input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.answer-input {
+  padding: 16px;
+  font-size: 18px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.answer-input:focus {
+  border-color: #1976d2;
+  box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+}
+
+.question-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+/* 答案模式 */
+.answer-mode {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.answer-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.correct-answer h3 {
+  margin: 0 0 12px 0;
+  color: #333;
+}
+
+.word-display {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background-color: #e8f5e8;
+  border-radius: 8px;
+  border: 2px solid #4caf50;
+}
+
+.word-text {
+  font-size: 28px;
+  font-weight: bold;
+  color: #2e7d32;
+}
+
+.pronunciation {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+}
+
+.user-answer {
+  padding: 12px 16px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-answer.correct {
+  background-color: #e8f5e8;
+  border: 1px solid #4caf50;
+}
+
+.user-answer.incorrect {
+  background-color: #ffebee;
+  border: 1px solid #f44336;
+}
+
+.user-answer-text {
+  font-weight: 600;
+}
+
+.feedback-icon {
+  font-weight: 600;
+}
+
+.vocabulary-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.detail-item strong {
+  color: #333;
+  font-size: 14px;
+}
+
+.detail-item span {
+  color: #555;
+  line-height: 1.5;
+}
+
+.tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  padding: 4px 8px;
+  background-color: #e3f2fd;
+  color: #1976d2;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.answer-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .vocabulary-learning-container {
+    padding: 12px;
+  }
+  
+  .learning-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .progress-section {
+    min-width: auto;
+  }
+  
+  .stats-section {
+    justify-content: space-between;
+  }
+  
+  .header-actions {
+    justify-content: center;
+  }
+  
+  .vocabulary-card {
+    padding: 20px;
+  }
+  
+  .vocabulary-header {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  .word-display {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .word-text {
+    font-size: 24px;
+  }
+  
+  .question-actions,
+  .completion-actions {
+    flex-direction: column;
+  }
+  
+  .user-answer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .definition-text {
+    font-size: 16px;
+  }
+  
+  .answer-input {
+    font-size: 16px;
+    padding: 12px;
+  }
+  
+  .word-text {
+    font-size: 20px;
+  }
+}

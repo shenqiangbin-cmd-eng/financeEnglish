@@ -1,0 +1,289 @@
+/* Input 基础样式 */
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.input-full-width {
+  width: 100%;
+}
+
+/* 标签样式 */
+.input-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.input-required {
+  color: #d32f2f;
+  margin-left: 2px;
+}
+
+/* 输入容器 */
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* 输入框基础样式 */
+.input-field {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 16px;
+  color: #333;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.input-field::placeholder {
+  color: #999;
+}
+
+/* 尺寸变体 */
+.input-small .input-container {
+  height: 32px;
+}
+
+.input-small .input-field {
+  font-size: 14px;
+  padding: 0 8px;
+}
+
+.input-small.input-has-icons .input-field {
+  padding: 0 32px 0 8px;
+}
+
+.input-small.input-has-icons .input-field:first-child {
+  padding-left: 32px;
+}
+
+.input-medium .input-container {
+  height: 40px;
+}
+
+.input-medium .input-field {
+  font-size: 16px;
+  padding: 0 12px;
+}
+
+.input-medium.input-has-icons .input-field {
+  padding: 0 40px 0 12px;
+}
+
+.input-medium.input-has-icons .input-field:first-child {
+  padding-left: 40px;
+}
+
+.input-large .input-container {
+  height: 48px;
+}
+
+.input-large .input-field {
+  font-size: 18px;
+  padding: 0 16px;
+}
+
+.input-large.input-has-icons .input-field {
+  padding: 0 48px 0 16px;
+}
+
+.input-large.input-has-icons .input-field:first-child {
+  padding-left: 48px;
+}
+
+/* 样式变体 */
+.input-outlined .input-container {
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background-color: white;
+}
+
+.input-outlined .input-container:hover:not(.input-disabled) {
+  border-color: #1976d2;
+}
+
+.input-outlined .input-container:focus-within {
+  border-color: #1976d2;
+  box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.1);
+}
+
+.input-filled .input-container {
+  background-color: #f5f5f5;
+  border: none;
+  border-bottom: 2px solid #e0e0e0;
+  border-radius: 6px 6px 0 0;
+}
+
+.input-filled .input-container:hover:not(.input-disabled) {
+  background-color: #eeeeee;
+  border-bottom-color: #1976d2;
+}
+
+.input-filled .input-container:focus-within {
+  background-color: #eeeeee;
+  border-bottom-color: #1976d2;
+}
+
+.input-standard .input-container {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #e0e0e0;
+  border-radius: 0;
+}
+
+.input-standard .input-container:hover:not(.input-disabled) {
+  border-bottom-color: #1976d2;
+}
+
+.input-standard .input-container:focus-within {
+  border-bottom-color: #1976d2;
+  border-bottom-width: 2px;
+}
+
+/* 图标样式 */
+.input-icon {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.input-start-icon {
+  left: 8px;
+}
+
+.input-end-icon {
+  right: 8px;
+}
+
+.input-small .input-icon {
+  width: 16px;
+  height: 16px;
+  font-size: 14px;
+}
+
+.input-medium .input-icon {
+  width: 20px;
+  height: 20px;
+  font-size: 16px;
+}
+
+.input-large .input-icon {
+  width: 24px;
+  height: 24px;
+  font-size: 18px;
+}
+
+/* 错误状态 */
+.input-error .input-container {
+  border-color: #d32f2f !important;
+}
+
+.input-error.input-outlined .input-container:focus-within {
+  box-shadow: 0 0 0 2px rgba(211, 47, 47, 0.1);
+}
+
+.input-error .input-label {
+  color: #d32f2f;
+}
+
+/* 禁用状态 */
+.input-disabled .input-container {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: #f5f5f5 !important;
+}
+
+.input-disabled .input-field {
+  cursor: not-allowed;
+  color: #999;
+}
+
+.input-disabled .input-label {
+  color: #999;
+}
+
+/* 帮助文本 */
+.input-helper {
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px;
+  line-height: 1.4;
+}
+
+.input-helper-error {
+  color: #d32f2f;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .input-large .input-container {
+    height: 44px;
+  }
+  
+  .input-large .input-field {
+    font-size: 16px;
+  }
+  
+  .input-medium .input-container {
+    height: 38px;
+  }
+  
+  .input-medium .input-field {
+    font-size: 15px;
+  }
+}
+
+/* 深色主题支持 */
+@media (prefers-color-scheme: dark) {
+  .input-label {
+    color: #e0e0e0;
+  }
+  
+  .input-field {
+    color: #e0e0e0;
+  }
+  
+  .input-field::placeholder {
+    color: #b0b0b0;
+  }
+  
+  .input-outlined .input-container {
+    background-color: #2d2d2d;
+    border-color: #404040;
+  }
+  
+  .input-filled .input-container {
+    background-color: #404040;
+    border-bottom-color: #606060;
+  }
+  
+  .input-standard .input-container {
+    border-bottom-color: #606060;
+  }
+  
+  .input-helper {
+    color: #b0b0b0;
+  }
+  
+  .input-disabled .input-container {
+    background-color: #404040 !important;
+  }
+  
+  .input-disabled .input-field {
+    color: #666;
+  }
+  
+  .input-disabled .input-label {
+    color: #666;
+  }
+}
